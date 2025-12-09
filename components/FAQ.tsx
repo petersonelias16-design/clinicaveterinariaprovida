@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Plus, Minus } from 'lucide-react';
 import { FaqItem } from '../types';
+import { Reveal } from './Reveal';
 
 const FAQ: React.FC = () => {
   const faqs: FaqItem[] = [
@@ -27,30 +28,34 @@ const FAQ: React.FC = () => {
   return (
     <section className="py-16 bg-vet-teal/5">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-display font-bold text-center text-vet-brown mb-10">
-          Dúvidas Frequentes
-        </h2>
+        <Reveal>
+          <h2 className="text-3xl font-display font-bold text-center text-vet-brown mb-10">
+            Dúvidas Frequentes
+          </h2>
+        </Reveal>
         
         <div className="space-y-4">
           {faqs.map((faq, index) => (
-            <div key={index} className="bg-white rounded-2xl shadow-sm overflow-hidden">
-              <button
-                className="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none"
-                onClick={() => setOpenIndex(openIndex === index ? null : index)}
-              >
-                <span className="font-bold text-vet-brown text-lg">{faq.question}</span>
-                {openIndex === index ? (
-                  <Minus className="w-6 h-6 text-vet-teal" />
-                ) : (
-                  <Plus className="w-6 h-6 text-vet-yellow" />
+            <Reveal key={index} delay={index * 100}>
+              <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
+                <button
+                  className="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none hover:bg-gray-50 transition-colors"
+                  onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                >
+                  <span className="font-bold text-vet-brown text-lg">{faq.question}</span>
+                  {openIndex === index ? (
+                    <Minus className="w-6 h-6 text-vet-teal" />
+                  ) : (
+                    <Plus className="w-6 h-6 text-vet-yellow" />
+                  )}
+                </button>
+                {openIndex === index && (
+                  <div className="px-6 pb-6 text-vet-brown-light animate-fadeIn">
+                    {faq.answer}
+                  </div>
                 )}
-              </button>
-              {openIndex === index && (
-                <div className="px-6 pb-6 text-vet-brown-light animate-fadeIn">
-                  {faq.answer}
-                </div>
-              )}
-            </div>
+              </div>
+            </Reveal>
           ))}
         </div>
       </div>

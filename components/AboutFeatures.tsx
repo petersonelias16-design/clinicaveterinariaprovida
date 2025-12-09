@@ -1,5 +1,6 @@
 import React from 'react';
 import { ShieldCheck, MapPin, HeartHandshake } from 'lucide-react';
+import { Reveal } from './Reveal';
 
 const AboutFeatures: React.FC = () => {
   const features = [
@@ -32,27 +33,35 @@ const AboutFeatures: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-vet-teal font-bold uppercase tracking-wider mb-2 text-sm">Por que a Pró Vida?</h2>
-          <h3 className="text-3xl md:text-4xl font-display font-bold text-vet-brown mb-6">
-            Mais do que uma clínica, uma extensão da sua família.
-          </h3>
-          <p className="text-vet-brown-light text-lg">
-            Você já ficou horas procurando um veterinário confiável ou se frustrou com um serviço de banho e tosa? 
-            Nós entendemos. Por isso criamos um espaço onde respeito e técnica caminham juntos.
-          </p>
+          <Reveal>
+            <h2 className="text-vet-teal font-bold uppercase tracking-wider mb-2 text-sm">Por que a Pró Vida?</h2>
+          </Reveal>
+          <Reveal delay={100}>
+            <h3 className="text-3xl md:text-4xl font-display font-bold text-vet-brown mb-6">
+              Mais do que uma clínica, uma extensão da sua família.
+            </h3>
+          </Reveal>
+          <Reveal delay={200}>
+            <p className="text-vet-brown-light text-lg">
+              Você já ficou horas procurando um veterinário confiável ou se frustrou com um serviço de banho e tosa? 
+              Nós entendemos. Por isso criamos um espaço onde respeito e técnica caminham juntos.
+            </p>
+          </Reveal>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
           {features.map((feature, idx) => (
-            <div key={idx} className="bg-vet-cream rounded-3xl p-8 hover:bg-yellow-50 transition-colors duration-300 border border-transparent hover:border-vet-yellow group shadow-sm hover:shadow-md">
-              <div className="bg-white rounded-2xl w-20 h-20 flex items-center justify-center shadow-sm mb-6 group-hover:scale-110 transition-transform duration-300">
-                {feature.icon}
+            <Reveal key={idx} delay={idx * 150} className="h-full">
+              <div className="bg-vet-cream rounded-3xl p-8 hover:bg-yellow-50 transition-colors duration-300 border border-transparent hover:border-vet-yellow group shadow-sm hover:shadow-md h-full">
+                <div className="bg-white rounded-2xl w-20 h-20 flex items-center justify-center shadow-sm mb-6 group-hover:scale-110 transition-transform duration-300">
+                  {feature.icon}
+                </div>
+                <h4 className="text-xl font-display font-bold text-vet-brown mb-3">{feature.title}</h4>
+                <p className="text-vet-brown-light leading-relaxed">
+                  {feature.description}
+                </p>
               </div>
-              <h4 className="text-xl font-display font-bold text-vet-brown mb-3">{feature.title}</h4>
-              <p className="text-vet-brown-light leading-relaxed">
-                {feature.description}
-              </p>
-            </div>
+            </Reveal>
           ))}
         </div>
 

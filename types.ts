@@ -7,6 +7,7 @@ export interface ServiceItem {
   title: string;
   description: string;
   icon: React.ReactNode;
+  image: string; // URL for the service image
   category: 'clinica' | 'estetica' | 'hotel';
 }
 
